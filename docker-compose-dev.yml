@@ -15,16 +15,13 @@ services:
       dockerfile: Dockerfile.dev
       context: ./nginx
     ports:
-      - "3050:80"
+      - '3050:80'
   api:
     build:
-      # just the name of the docker file
-      dockerfile: Dockerfile.dev 
+      dockerfile: Dockerfile.dev
       context: ./server
     volumes:
-      # leave this folder as it is, dont override
       - /app/node_modules
-      # any change will be auto reflected inside of the app folder 
       - ./server:/app
     environment:
       - REDIS_HOST=redis
