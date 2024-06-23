@@ -16,3 +16,10 @@ after_success:
   - docker build -t seatoiler/multi-nginx ./nginx
   - docker build -t seatoiler/multi-server ./server
   - docker build -t seatoiler/multi-worker ./worker
+  # log in to the Docker CLI by env variables
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # take those images and push them each by each to the Docker Hub
+  - docker push seatoiler/multi-client
+  - docker push seatoiler/multi-nginx
+  - docker push seatoiler/multi-server
+  - docker push seatoiler/multi-worker
